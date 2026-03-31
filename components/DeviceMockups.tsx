@@ -86,14 +86,14 @@ export default function DeviceMockups({ locale }: DeviceMockupsProps) {
                   />
                 </div>
               </div>
-              {/* TV stand */}
-              <div className="flex justify-center mt-1">
+              {/* TV stand — hidden on mobile to avoid line appearing next to phone */}
+              <div className="hidden md:flex justify-center mt-1">
                 <div
                   className="bg-dark/70 rounded-b-lg"
                   style={{ width: "52px", height: "18px", clipPath: "polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%)" }}
                 />
               </div>
-              <div className="flex justify-center">
+              <div className="hidden md:flex justify-center">
                 <div className="w-24 h-1 bg-dark/40 rounded-full" />
               </div>
             </div>
@@ -138,11 +138,11 @@ export default function DeviceMockups({ locale }: DeviceMockupsProps) {
                   </div>
                 </div>
               </div>
-              {/* Stand */}
-              <div className="flex justify-center">
+              {/* Stand — hidden on mobile */}
+              <div className="hidden md:flex justify-center">
                 <div className="w-12 h-2.5 bg-dark rounded-b-sm" />
               </div>
-              <div className="flex justify-center">
+              <div className="hidden md:flex justify-center">
                 <div className="w-20 h-0.5 bg-dark/50 rounded-full" />
               </div>
             </div>

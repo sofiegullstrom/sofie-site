@@ -32,7 +32,7 @@ export default function Navigation({ locale }: NavigationProps) {
   }, []);
 
   const navLinks = [
-    { href: `/${locale}/portfolio`, label: t("portfolio") },
+    { href: `/${locale}#portfolio`, label: t("portfolio") },
     { href: `/${locale}/work-with-me`, label: t("contact") },
   ];
 
@@ -84,7 +84,12 @@ export default function Navigation({ locale }: NavigationProps) {
         {/* Desktop nav links */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="nav-link">
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-xs tracking-widest uppercase font-sans transition-all duration-500 hover:opacity-50"
+              style={{ color: scrolled ? "#2C1A0E" : "#FAF7F2" }}
+            >
               {link.label}
             </Link>
           ))}
@@ -114,7 +119,8 @@ export default function Navigation({ locale }: NavigationProps) {
           </a>
           <Link
             href={otherLocalePath}
-            className="border-l border-sand pl-6 opacity-80 hover:opacity-100 transition-opacity duration-200"
+            className="pl-6 opacity-80 hover:opacity-100 transition-opacity duration-200"
+            style={{ borderLeft: scrolled ? "1px solid #DBC9A8" : "1px solid rgba(250,247,242,0.3)" }}
             aria-label={otherLocale === "sv" ? "Byt till svenska" : "Switch to English"}
           >
             {otherLocale === "sv" ? <FlagSE /> : <FlagGB />}

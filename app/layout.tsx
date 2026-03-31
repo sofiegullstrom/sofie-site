@@ -17,26 +17,70 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sofiegullstrom.com"),
   title: {
-    default: "Sofie Gullström – Foto, Video & Innehåll",
+    default: "Sofie Gullström – UGC Creator & Digital Konsult",
     template: "%s | Sofie Gullström",
   },
   description:
-    "Kreativ allround-kreatör baserad i Sverige. Foto, video, UGC, sociala medier och marknadsstrategi.",
+    "Sofie Gullström är en UGC-skapare och digital konsult med 10+ års erfarenhet. Foto, video, influencer-samarbeten och marknadsstrategi för svenska och internationella varumärken.",
   keywords: [
-    "fotograf",
-    "videograf",
-    "UGC",
-    "sociala medier",
+    "UGC creator Sverige",
+    "UGC skapare",
+    "influencer Sverige",
+    "fotograf Sverige",
+    "videoproducent",
+    "sociala medier konsult",
+    "marknadsstrategi",
     "innehållsstrategi",
-    "Sverige",
     "Sofie Gullström",
+    "digital konsult",
+    "content creator",
+    "produktfoto",
+    "reklamfilm",
+    "Instagram Sverige",
+    "TikTok creator",
   ],
   openGraph: {
     type: "website",
     locale: "sv_SE",
-    alternateLocale: "en_US",
+    alternateLocale: ["en_US"],
     siteName: "Sofie Gullström",
+    title: "Sofie Gullström – UGC Creator & Digital Konsult",
+    description:
+      "UGC-skapare och digital konsult med 10+ års erfarenhet. Foto, video, influencer-samarbeten för svenska och internationella varumärken.",
+    url: "https://sofiegullstrom.com",
+    images: [
+      {
+        url: "/images/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Sofie Gullström – UGC Creator & Digital Konsult",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sofie Gullström – UGC Creator & Digital Konsult",
+    description:
+      "UGC-skapare och digital konsult med 10+ års erfarenhet. Foto, video och sociala medier.",
+    images: ["/images/hero.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
+  },
+  alternates: {
+    canonical: "https://sofiegullstrom.com/sv",
+    languages: {
+      sv: "https://sofiegullstrom.com/sv",
+      en: "https://sofiegullstrom.com/en",
+    },
   },
 };
 

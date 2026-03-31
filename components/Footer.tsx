@@ -23,9 +23,6 @@ export default function Footer({ locale }: FooterProps) {
               <span className="font-light">SOFIE</span>
               <span className="font-medium"> GULLSTRÖM</span>
             </p>
-            <p className="text-cream/60 text-sm leading-relaxed max-w-xs">
-              {t("tagline")}
-            </p>
           </div>
 
           {/* Links */}
@@ -34,7 +31,7 @@ export default function Footer({ locale }: FooterProps) {
             <div className="flex flex-col gap-3">
               {[
                 { href: `/${locale}`, label: locale === "sv" ? "Start" : "Home" },
-                { href: `/${locale}/portfolio`, label: nav("portfolio") },
+                { href: `/${locale}#portfolio`, label: nav("portfolio") },
                 { href: `/${locale}/work-with-me`, label: locale === "sv" ? "Jobba med mig" : "Work with me" },
               ].map((link) => (
                 <Link

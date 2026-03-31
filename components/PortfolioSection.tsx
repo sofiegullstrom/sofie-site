@@ -131,7 +131,7 @@ function CategoryCard({ cat, locale, index }: { cat: Category; locale: string; i
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        {/* Image / placeholder */}
+        {/* Image */}
         <div
           className="relative overflow-hidden"
           style={{ aspectRatio: "4/5" }}
@@ -145,113 +145,80 @@ function CategoryCard({ cat, locale, index }: { cat: Category; locale: string; i
             sizes="(max-width: 768px) 50vw, 25vw"
           />
 
-          {/* Hover overlay — always dark for Let's Work card, others only on hover */}
-          <div
-            className="absolute inset-0 transition-all duration-500"
-            style={{
-              background: isLetsWork
-                ? hovered ? "rgba(20,10,6,0.72)" : "rgba(20,10,6,0.52)"
-                : hovered ? "rgba(44,26,14,0.45)" : "rgba(0,0,0,0)",
-            }}
-          />
-
           {isLetsWork ? (
-            /* Let's work – centred label with merlot accent line */
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+            <>
+              {/* Let's work — always dark overlay */}
               <div
-                className="transition-all duration-500"
-                style={{
-                  width: hovered ? "32px" : "20px",
-                  height: "1px",
-                  background: "rgba(180,80,80,0.8)",
-                }}
+                className="absolute inset-0 transition-all duration-500"
+                style={{ background: hovered ? "rgba(20,10,6,0.72)" : "rgba(20,10,6,0.52)" }}
               />
-              <div
-                className="transition-all duration-400"
-                style={{
-                  border: "1px solid rgba(250,247,242,0.55)",
-                  padding: "10px 22px",
-                  transform: hovered ? "scale(1.04)" : "scale(1)",
-                }}
-              >
-                <span
-                  className="font-serif font-light tracking-[0.22em] uppercase"
+              {/* Centred label with merlot accent lines */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                <div
+                  className="transition-all duration-500"
+                  style={{ width: hovered ? "32px" : "20px", height: "1px", background: "rgba(180,80,80,0.8)" }}
+                />
+                <div
                   style={{
-                    color: "rgba(250,247,242,0.92)",
-                    fontSize: "clamp(10px, 1vw, 13px)",
-                    letterSpacing: "0.22em",
+                    border: "1px solid rgba(250,247,242,0.55)",
+                    padding: "10px 22px",
+                    transform: hovered ? "scale(1.04)" : "scale(1)",
+                    transition: "transform 0.4s ease",
                   }}
                 >
-                  {locale === "sv" ? "Jobba med mig" : "Let's work together"}
-                </span>
+                  <span
+                    className="font-serif font-light uppercase"
+                    style={{ color: "rgba(250,247,242,0.92)", fontSize: "clamp(10px, 1vw, 13px)", letterSpacing: "0.22em" }}
+                  >
+                    {locale === "sv" ? "Jobba med mig" : "Let's work together"}
+                  </span>
+                </div>
+                <div
+                  className="transition-all duration-500"
+                  style={{ width: hovered ? "32px" : "20px", height: "1px", background: "rgba(180,80,80,0.8)" }}
+                />
               </div>
-              <div
-                className="transition-all duration-500"
-                style={{
-                  width: hovered ? "32px" : "20px",
-                  height: "1px",
-                  background: "rgba(180,80,80,0.8)",
-                }}
-              />
-            </div>
+            </>
           ) : (
             <>
-              {/* Arrow icon top-right on hover */}
+              {/* Permanent gradient overlay — always visible, deeper on hover */}
               <div
-                className="absolute top-4 right-4 transition-all duration-400"
+                className="absolute inset-x-0 bottom-0 transition-all duration-500"
                 style={{
-                  opacity: hovered ? 1 : 0,
-                  transform: hovered ? "translate(0,0)" : "translate(4px,-4px)",
+                  height: hovered ? "70%" : "55%",
+                  background: "linear-gradient(to top, rgba(20,10,6,0.82) 0%, rgba(20,10,6,0.45) 50%, transparent 100%)",
                 }}
+              />
+
+              {/* Category name — always visible at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 px-4 pb-4">
+                <p
+                  className="font-serif font-light text-cream leading-tight"
+                  style={{ fontSize: "clamp(13px, 1.6vw, 18px)", letterSpacing: "0.03em" }}
+                >
+                  {label}
+                </p>
+              </div>
+
+              {/* Arrow icon — top-right on hover */}
+              <div
+                className="absolute top-3 right-3 transition-all duration-400"
+                style={{ opacity: hovered ? 1 : 0, transform: hovered ? "translate(0,0)" : "translate(4px,-4px)" }}
               >
-                <div className="w-8 h-8 rounded-full bg-cream/90 flex items-center justify-center">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <div className="w-7 h-7 rounded-full bg-cream/90 flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
                     <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#2C1A0E" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
               </div>
-              {/* Project count bottom-left */}
-              <div
-                className="absolute bottom-3 left-4 transition-all duration-400"
-                style={{ opacity: hovered ? 1 : 0, transform: hovered ? "translateY(0)" : "translateY(6px)" }}
-              >
-                <p className="font-mono text-[9px] text-cream/60 tracking-widest uppercase">
-                  {locale === "sv" ? cat.count_sv : cat.count_en}
-                </p>
-              </div>
-              {/* Merlot bottom bar */}
+
+              {/* Merlot bottom accent on hover */}
               <div
                 className="absolute bottom-0 left-0 right-0 bg-merlot transition-all duration-400"
                 style={{ height: hovered ? "3px" : "0px" }}
               />
             </>
           )}
-        </div>
-
-        {/* Text below card */}
-        <div className="pt-4 pb-1 px-0.5">
-          <div className="flex items-center justify-between gap-2">
-            <p
-              className="font-serif text-base md:text-lg font-light tracking-wide transition-colors duration-300"
-              style={{ color: hovered ? "var(--color-merlot)" : "var(--color-dark)" }}
-            >
-              {label}
-            </p>
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              className="mt-0.5 flex-shrink-0 transition-all duration-300"
-              style={{
-                opacity: hovered ? 1 : 0,
-                transform: hovered ? "translateX(2px)" : "translateX(-4px)",
-                color: "var(--color-merlot)",
-              }}
-            >
-              <path d="M2 7H12M12 7L7 2M12 7L7 12" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
         </div>
       </Link>
     </div>

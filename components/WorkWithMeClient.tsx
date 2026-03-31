@@ -2,15 +2,22 @@
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import FollowSection from "@/components/FollowSection";
+import Link from "next/link";
 import { useRef, useState, useEffect, FormEvent } from "react";
 
 interface WorkWithMeClientProps {
   locale: string;
 }
 
-// ── Light cream background ────────────────────────────────────────────
+// ── Dark checkered background — same as portfolio section ─────────────
 const PAGE_BG_STYLE: React.CSSProperties = {
-  background: "#FAF8F4",
+  background: "#1A0D07",
+  backgroundImage: `
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)
+  `,
+  backgroundSize: "80px 80px",
 };
 
 // ── Testimonials data ─────────────────────────────────────────────────
@@ -55,10 +62,6 @@ const CONTENT = {
       sub: "Jag hör av mig snart.",
       social: "Följ mig på sociala medier",
     },
-    footer: {
-      rights: "© 2025 Sofie Gullström. Alla rättigheter förbehållna.",
-      nav: ["Start", "Portfolio", "Om mig"],
-    },
   },
   en: {
     eyebrow: "Collaboration",
@@ -80,10 +83,6 @@ const CONTENT = {
       sub: "I'll be in touch soon.",
       social: "Follow me on social media",
     },
-    footer: {
-      rights: "© 2025 Sofie Gullström. All rights reserved.",
-      nav: ["Home", "Portfolio", "About"],
-    },
   },
 };
 
@@ -103,7 +102,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 const inputCls =
-  "w-full bg-transparent border-b py-2.5 font-sans text-sm text-dark placeholder-mocha/20 focus:outline-none transition-colors duration-200";
+  "w-full bg-transparent border-b py-2.5 font-sans text-sm placeholder-cream/20 focus:outline-none transition-colors duration-200";
 
 // ── Social icons ──────────────────────────────────────────────────────
 function InstagramIcon() {
@@ -124,7 +123,7 @@ function TikTokIcon() {
   );
 }
 
-// ── Rotating testimonials (one at a time, slides up) ─────────────────
+// ── Rotating testimonials ─────────────────────────────────────────────
 function TestimonialRotator({ label }: { label: string }) {
   const [current, setCurrent] = useState(0);
   const [animating, setAnimating] = useState(false);
@@ -135,7 +134,7 @@ function TestimonialRotator({ label }: { label: string }) {
       setTimeout(() => {
         setCurrent((prev) => (prev + 1) % TESTIMONIALS.length);
         setAnimating(false);
-      }, 500); // half of transition
+      }, 500);
     }, 6000);
     return () => clearInterval(interval);
   }, []);
@@ -144,15 +143,10 @@ function TestimonialRotator({ label }: { label: string }) {
 
   return (
     <div className="flex flex-col h-full justify-between">
-      {/* Label */}
-      <p
-        className="font-mono text-[10px] tracking-widest uppercase mb-10"
-        style={{ color: "var(--color-merlot)" }}
-      >
+      <p className="font-mono text-[10px] tracking-widest uppercase mb-10" style={{ color: "var(--color-merlot)" }}>
         {label}
       </p>
 
-      {/* Quote block */}
       <div
         style={{
           opacity: animating ? 0 : 1,
@@ -160,43 +154,31 @@ function TestimonialRotator({ label }: { label: string }) {
           transition: "opacity 0.5s ease, transform 0.5s ease",
         }}
       >
-        {/* Large decorative quote */}
         <span
           className="font-serif block leading-none mb-6"
-          style={{
-            fontSize: "clamp(60px, 8vw, 100px)",
-            color: "rgba(44,26,14,0.07)",
-            lineHeight: 0.8,
-          }}
+          style={{ fontSize: "clamp(60px, 8vw, 100px)", color: "rgba(250,247,242,0.08)", lineHeight: 0.8 }}
         >
           "
         </span>
 
         <p
           className="font-serif font-light leading-relaxed mb-10"
-          style={{
-            fontSize: "clamp(18px, 2vw, 26px)",
-            color: "rgba(44,26,14,0.85)",
-          }}
+          style={{ fontSize: "clamp(18px, 2vw, 26px)", color: "rgba(250,247,242,0.85)" }}
         >
           {t.quote}
         </p>
 
         <div className="flex items-center gap-4">
-          <div
-            className="h-px w-8"
-            style={{ background: "var(--color-merlot)" }}
-          />
+          <div className="h-px w-8" style={{ background: "var(--color-merlot)" }} />
           <span
             className="font-mono text-[11px] tracking-[0.25em] uppercase"
-            style={{ color: "rgba(44,26,14,0.45)" }}
+            style={{ color: "rgba(250,247,242,0.45)" }}
           >
             {t.brand}
           </span>
         </div>
       </div>
 
-      {/* Dots indicator */}
       <div className="flex items-center gap-2 mt-12">
         {TESTIMONIALS.map((_, i) => (
           <button
@@ -206,7 +188,7 @@ function TestimonialRotator({ label }: { label: string }) {
             style={{
               width: i === current ? "24px" : "6px",
               height: "2px",
-              background: i === current ? "var(--color-merlot)" : "rgba(44,26,14,0.15)",
+              background: i === current ? "var(--color-merlot)" : "rgba(250,247,242,0.2)",
             }}
             aria-label={`Testimonial ${i + 1}`}
           />
@@ -249,7 +231,23 @@ export default function WorkWithMeClient({ locale }: WorkWithMeClientProps) {
 
   return (
     <div className="min-h-screen flex flex-col" style={PAGE_BG_STYLE}>
-      {/* ── Navbar ── */}
+      {/* ── Fixed SG logo — always visible in top-left ── */}
+      <div className="fixed top-5 left-6 z-[60]">
+        <Link
+          href={`/${locale}`}
+          aria-label="Sofie Gullström — home"
+          className="hover:opacity-70 transition-opacity duration-200"
+        >
+          <span
+            className="font-serif text-2xl font-light tracking-[0.12em] select-none"
+            style={{ color: "#FAF7F2" }}
+          >
+            SG
+          </span>
+        </Link>
+      </div>
+
+      {/* ── Navbar (language toggle + mobile menu) ── */}
       <Navigation locale={locale} />
 
       <main className="flex-1 pt-24 pb-0">
@@ -265,7 +263,7 @@ export default function WorkWithMeClient({ locale }: WorkWithMeClientProps) {
             className="font-serif font-light tracking-wide"
             style={{
               fontSize: "clamp(44px, 7vw, 96px)",
-              color: "var(--color-dark)",
+              color: "var(--color-cream)",
               lineHeight: 1.05,
             }}
           >
@@ -282,11 +280,14 @@ export default function WorkWithMeClient({ locale }: WorkWithMeClientProps) {
               <TestimonialRotator label={c.testimonials_label} />
             </div>
 
-            {/* RIGHT — form panel: slightly lifted with shadow to separate from left column */}
+            {/* RIGHT — form panel */}
             <div
               ref={formRef}
-              className="p-10 md:p-12 flex flex-col border border-sand/20"
-              style={{ background: "#FFFFFF" }}
+              className="p-10 md:p-12 flex flex-col"
+              style={{
+                background: "rgba(250,247,242,0.04)",
+                border: "1px solid rgba(250,247,242,0.1)",
+              }}
             >
               {status === "success" ? (
                 /* Success card */
@@ -300,18 +301,22 @@ export default function WorkWithMeClient({ locale }: WorkWithMeClientProps) {
                     </svg>
                   </div>
                   <div>
-                    <h2 className="font-serif text-3xl font-light text-dark mb-2">{c.success.heading}</h2>
-                    <p className="font-sans text-base text-mocha/60">{c.success.sub}</p>
+                    <h2 className="font-serif text-3xl font-light mb-2" style={{ color: "var(--color-cream)" }}>{c.success.heading}</h2>
+                    <p className="font-sans text-base" style={{ color: "rgba(250,247,242,0.5)" }}>{c.success.sub}</p>
                   </div>
-                  <div className="border-t border-sand/30 w-full pt-8 flex flex-col items-center gap-5">
+                  <div className="w-full pt-8 flex flex-col items-center gap-5" style={{ borderTop: "1px solid rgba(250,247,242,0.1)" }}>
                     <p className="font-mono text-[10px] tracking-widest uppercase" style={{ color: "var(--color-merlot)" }}>
                       {c.success.social}
                     </p>
                     <div className="flex items-center gap-6">
-                      <a href="https://www.instagram.com/sofiigullstrom" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-sans text-sm transition-opacity duration-200 hover:opacity-70" style={{ color: "var(--color-merlot)" }}>
+                      <a href="https://www.instagram.com/sofiigullstrom" target="_blank" rel="noopener noreferrer"
+                        className="flex items-center gap-2 font-sans text-sm transition-opacity duration-200 hover:opacity-70"
+                        style={{ color: "var(--color-merlot)" }}>
                         <InstagramIcon /><span>Instagram</span>
                       </a>
-                      <a href="https://www.tiktok.com/@sofiigullstrom" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-sans text-sm transition-opacity duration-200 hover:opacity-70" style={{ color: "var(--color-merlot)" }}>
+                      <a href="https://www.tiktok.com/@sofiigullstrom" target="_blank" rel="noopener noreferrer"
+                        className="flex items-center gap-2 font-sans text-sm transition-opacity duration-200 hover:opacity-70"
+                        style={{ color: "var(--color-merlot)" }}>
                         <TikTokIcon /><span>TikTok</span>
                       </a>
                     </div>
@@ -321,32 +326,55 @@ export default function WorkWithMeClient({ locale }: WorkWithMeClientProps) {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6 h-full">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <Field label={c.form.name}>
-                      <input name="name" value={form.name} onChange={handleChange} required className={inputCls} style={{ borderBottomColor: "rgba(120,40,60,0.25)" }} />
+                      <input
+                        name="name" value={form.name} onChange={handleChange} required
+                        className={inputCls}
+                        style={{ borderBottomColor: "rgba(250,247,242,0.2)", color: "var(--color-cream)" }}
+                      />
                     </Field>
                     <Field label={c.form.company}>
-                      <input name="company" value={form.company} onChange={handleChange} className={inputCls} style={{ borderBottomColor: "rgba(120,40,60,0.25)" }} />
+                      <input
+                        name="company" value={form.company} onChange={handleChange}
+                        className={inputCls}
+                        style={{ borderBottomColor: "rgba(250,247,242,0.2)", color: "var(--color-cream)" }}
+                      />
                     </Field>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <Field label={c.form.email}>
-                      <input name="email" type="email" value={form.email} onChange={handleChange} required className={inputCls} style={{ borderBottomColor: "rgba(120,40,60,0.25)" }} />
+                      <input
+                        name="email" type="email" value={form.email} onChange={handleChange} required
+                        className={inputCls}
+                        style={{ borderBottomColor: "rgba(250,247,242,0.2)", color: "var(--color-cream)" }}
+                      />
                     </Field>
                     <Field label={c.form.type}>
-                      <select name="type" value={form.type} onChange={handleChange} required className={inputCls + " cursor-pointer"} style={{ borderBottomColor: "rgba(120,40,60,0.25)" }}>
+                      <select
+                        name="type" value={form.type} onChange={handleChange} required
+                        className={inputCls + " cursor-pointer"}
+                        style={{ borderBottomColor: "rgba(250,247,242,0.2)", color: "var(--color-cream)" }}
+                      >
                         {c.form.typeOptions.map((opt) => (
-                          <option key={opt} value={opt === c.form.typeOptions[0] ? "" : opt}>{opt}</option>
+                          <option key={opt} value={opt === c.form.typeOptions[0] ? "" : opt}
+                            style={{ background: "#1A0D07", color: "#FAF7F2" }}>
+                            {opt}
+                          </option>
                         ))}
                       </select>
                     </Field>
                   </div>
 
                   <Field label={c.form.message}>
-                    <textarea name="message" value={form.message} onChange={handleChange} required rows={5} className={inputCls + " resize-none"} style={{ borderBottomColor: "rgba(120,40,60,0.25)" }} />
+                    <textarea
+                      name="message" value={form.message} onChange={handleChange} required rows={5}
+                      className={inputCls + " resize-none"}
+                      style={{ borderBottomColor: "rgba(250,247,242,0.2)", color: "var(--color-cream)" }}
+                    />
                   </Field>
 
                   {status === "error" && (
-                    <p className="font-sans text-sm text-red-500">{c.form.error}</p>
+                    <p className="font-sans text-sm text-red-400">{c.form.error}</p>
                   )}
 
                   <div className="mt-auto pt-4">
@@ -371,6 +399,9 @@ export default function WorkWithMeClient({ locale }: WorkWithMeClientProps) {
           </div>
         </div>
       </main>
+
+      {/* ── Follow / social media section ── */}
+      <FollowSection locale={locale} />
 
       {/* ── Footer ── */}
       <Footer locale={locale} />

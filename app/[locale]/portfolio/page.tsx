@@ -1,10 +1,11 @@
-import SeeAllClient from "@/components/SeeAllClient";
+import { redirect } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
 }
 
-export default async function SeeAllPage({ params }: PageProps) {
+export default async function PortfolioPage({ params }: PageProps) {
   const { locale } = await params;
-  return <SeeAllClient locale={locale} />;
+  // Portfolio section is on the homepage — redirect there
+  redirect(`/${locale}`);
 }
