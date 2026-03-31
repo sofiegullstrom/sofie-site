@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-cream: #FAF7F2;
+    --color-beige: #F0E8D9;
+    --color-sand: #DBC9A8;
+    --color-tan: #C9AA82;
+    --color-mocha: #8B6F5E;
+    --color-espresso: #5C3D2E;
+    --color-dark: #2C1A0E;
+    --color-merlot: #722F37;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream text-dark font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: #DBC9A8;
+    color: #2C1A0E;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-merlot text-cream px-5 py-2 text-xs tracking-widest uppercase font-sans transition-all duration-300 hover:bg-espresso;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 border border-dark text-dark px-7 py-3.5 text-sm tracking-widest uppercase font-sans transition-all duration-300 hover:bg-dark hover:text-cream;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-merlot text-sm tracking-widest uppercase font-sans transition-all duration-300 hover:opacity-60;
+  }
+
+  .link-merlot {
+    @apply text-merlot hover:opacity-70 transition-opacity duration-200;
+  }
+
+  .section-heading {
+    @apply font-serif text-4xl md:text-5xl lg:text-6xl leading-tight text-dark;
+  }
+
+  .eyebrow {
+    @apply text-xs tracking-ultra-wide uppercase text-mocha font-sans;
+  }
+
+  .nav-link {
+    @apply text-xs tracking-widest uppercase text-dark font-sans transition-all duration-200 hover:opacity-50;
+  }
+}
+
+/* Thin scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-sand);
+  border-radius: 2px;
+}
+
+/* Animation delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Fade-up animation utility */
+.animate-fade-up {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Services ticker */
+.ticker-track {
+  animation: ticker 30s linear infinite;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Logo marquee – left to right */
+.logos-track-ltr {
+  animation: logosLtr 82s linear infinite;
+}
+
+/* Logo marquee – right to left */
+.logos-track-rtl {
+  animation: logosRtl 55s linear infinite;
+}
+
+@keyframes logosLtr {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+@keyframes logosRtl {
+  0% { transform: translateX(-33.333%); }
+  100% { transform: translateX(0); }
+}
+
+/* Pause marquee on hover */
+.logos-track-ltr:hover,
+.logos-track-rtl:hover {
+  animation-play-state: paused;
+}

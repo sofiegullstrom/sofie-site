@@ -1,0 +1,24 @@
+{
+  "about": {
+    "eyebrow_sv": "Om mig",
+    "eyebrow_en": "About me",
+    "heading_sv": "Sofie\nGullström",
+    "heading_en": "Sofie\nGullström",
+    "paragraphs_sv": [
+      "Hej, jag är Sofie!",
+      "Jag har alltid varit kreativ. Jag började spela piano när jag var fyra år och spenderar fortfarande mycket av min fritid med att rita, måla och jobba med nya kreativa projekt. Under åren har jag också byggt flera webbplatser (inklusive den här), helt enkelt för att jag tycker om att skapa saker från grunden.",
+      "När jag satte ihop den här portfolion insåg jag att det inte är lätt att sammanfatta 10 års arbete och erfarenhet på ett enda bildspel. Så jag bestämde mig för att bygga en plats där jag kan dela fler av de projekt, idéer och arbeten jag har varit en del av."
+    ],
+    "paragraphs_en": [
+      "Hi, I'm Sofie!",
+      "I've always been a creative person. I started playing piano at four years old and still spend much of my free time drawing, painting and working on new creative projects. Over the years I've also built several websites (including this one), simply because I enjoy creating things from scratch.",
+      "When putting this portfolio together, I realized that it's not easy to summarize 10 years of work and experience in a single slide. So I decided to build a place where I can share more of the projects, ideas and work I've been part of."
+    ]
+  },
+  "hero": {
+    "cta_sv": "Jobba med mig",
+    "cta_en": "Let's work together",
+    "tagline_sv": "Urval ur portfolio",
+    "tagline_en": "Portfolio highlights"
+  }
+}

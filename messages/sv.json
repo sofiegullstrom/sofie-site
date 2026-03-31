@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "portfolio": "Portfolio",
+    "services": "Tjänster",
+    "about": "Om mig",
+    "contact": "Kontakt",
+    "book": "Boka"
+  },
+  "home": {
+    "eyebrow": "Foto · Video · UGC · Strategi",
+    "headline": "Skapar innehåll som berättar.",
+    "subtitle": "Jag är Sofie – en kreativ allround-kreatör baserad i Sverige. Jag hjälper varumärken och privatpersoner att synas på rätt sätt, med rätt känsla.",
+    "cta_portfolio": "Se portfolio",
+    "cta_book": "Boka samarbete",
+    "scroll": "Scrolla"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Ett urval av mina projekt inom foto, video och grafisk design.",
+    "categories": {
+      "all": "Alla",
+      "photo": "Foto",
+      "video": "Video",
+      "design": "Design",
+      "ugc": "UGC"
+    }
+  },
+  "services": {
+    "title": "Tjänster",
+    "subtitle": "Vad jag kan hjälpa dig med – oavsett om du är privatperson eller företag.",
+    "note": "Priser är ungefärliga och anpassas alltid efter projektets omfång. Kontakta mig för offert.",
+    "items": [
+      {
+        "category": "Foto",
+        "title": "Fotografering",
+        "description": "Produktfoto, livsstilsfoto, event och porträtt. Leverans av redigerade bilder.",
+        "price": "Från 1 500 kr / halvdag"
+      },
+      {
+        "category": "Video",
+        "title": "Videoproduktion",
+        "description": "Kortfilmer, reklamfilm, reels och sociala medie-video. Inkl. klippning och färgkorrigering.",
+        "price": "Från 3 500 kr / dag"
+      },
+      {
+        "category": "UGC",
+        "title": "UGC-innehåll",
+        "description": "Autentiskt användargenererat innehåll för sociala medier och annonsering.",
+        "price": "Från 800 kr / video"
+      },
+      {
+        "category": "Sociala medier",
+        "title": "Social Media Management",
+        "description": "Strategi, innehållsplan, publicering och statistikuppföljning för Instagram, TikTok och LinkedIn.",
+        "price": "Från 4 000 kr / månad"
+      },
+      {
+        "category": "Design",
+        "title": "Grafisk design & Webbdesign",
+        "description": "Logotyper, grafiska profiler, trycksaker och webbsidor. Minimalistisk och clean estetik.",
+        "price": "Offert efter brief"
+      },
+      {
+        "category": "SEO & LLM",
+        "title": "SEO & LLM-optimering",
+        "description": "Sökmotoroptimering och innehållsstrategi anpassad för både Google och AI-sökmotorer.",
+        "price": "Offert efter brief"
+      }
+    ]
+  },
+  "about": {
+    "title": "Om mig",
+    "intro": "Hej, jag är Sofie.",
+    "body": "Jag är en kreativ allround-kreatör baserad i Sverige som brinner för att skapa innehåll med känsla. Med bakgrund inom foto, video, sociala medier och marknadsstrategi hjälper jag varumärken och privatpersoner att synas – på rätt sätt.",
+    "body2": "Jag jobbar med allt från UGC och fotografering till grafisk design och SEO. Oavsett om du är ett litet företag som vill synas lokalt eller ett internationellt varumärke som söker autentiskt innehåll, hittar vi ett upplägg som passar dig.",
+    "cta": "Kontakta mig"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Redo att starta ett projekt? Hör av dig!",
+    "form": {
+      "name": "Namn",
+      "email": "E-post",
+      "company": "Företag (valfritt)",
+      "service": "Vad är du intresserad av?",
+      "message": "Berätta mer om ditt projekt",
+      "send": "Skicka",
+      "success": "Tack! Jag återkommer inom 1–2 arbetsdagar.",
+      "services": [
+        "Fotografering",
+        "Videoproduktion",
+        "UGC-innehåll",
+        "Social Media Management",
+        "Grafisk design / Webbdesign",
+        "SEO & LLM-optimering",
+        "Annat"
+      ]
+    },
+    "book": {
+      "title": "Boka ett möte",
+      "subtitle": "Välj en tid som passar dig i min kalender."
+    }
+  },
+  "footer": {
+    "tagline": "Skapar innehåll som berättar.",
+    "links": "Snabblänkar",
+    "social": "Sociala medier",
+    "rights": "Alla rättigheter förbehållna."
+  }
+}

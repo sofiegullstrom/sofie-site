@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "portfolio": "Portfolio",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "book": "Book"
+  },
+  "home": {
+    "eyebrow": "Photo · Video · UGC · Strategy",
+    "headline": "Creating content that tells your story.",
+    "subtitle": "I'm Sofie – a creative all-rounder based in Sweden. I help brands and individuals stand out in the right way, with the right feel.",
+    "cta_portfolio": "View portfolio",
+    "cta_book": "Book a collaboration",
+    "scroll": "Scroll"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "A selection of my work in photography, video and graphic design.",
+    "categories": {
+      "all": "All",
+      "photo": "Photo",
+      "video": "Video",
+      "design": "Design",
+      "ugc": "UGC"
+    }
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "What I can help you with – whether you're an individual or a company.",
+    "note": "Prices are approximate and always tailored to the scope of the project. Contact me for a quote.",
+    "items": [
+      {
+        "category": "Photo",
+        "title": "Photography",
+        "description": "Product photography, lifestyle, events and portraits. Delivery of edited images.",
+        "price": "From SEK 1,500 / half day"
+      },
+      {
+        "category": "Video",
+        "title": "Video Production",
+        "description": "Short films, commercials, reels and social media video. Incl. editing and color grading.",
+        "price": "From SEK 3,500 / day"
+      },
+      {
+        "category": "UGC",
+        "title": "UGC Content",
+        "description": "Authentic user-generated content for social media and advertising.",
+        "price": "From SEK 800 / video"
+      },
+      {
+        "category": "Social Media",
+        "title": "Social Media Management",
+        "description": "Strategy, content planning, publishing and analytics for Instagram, TikTok and LinkedIn.",
+        "price": "From SEK 4,000 / month"
+      },
+      {
+        "category": "Design",
+        "title": "Graphic Design & Web Design",
+        "description": "Logos, brand identities, print materials and websites. Minimalist and clean aesthetic.",
+        "price": "Quote after brief"
+      },
+      {
+        "category": "SEO & LLM",
+        "title": "SEO & LLM Optimization",
+        "description": "Search engine optimization and content strategy adapted for both Google and AI search engines.",
+        "price": "Quote after brief"
+      }
+    ]
+  },
+  "about": {
+    "title": "About me",
+    "intro": "Hi, I'm Sofie.",
+    "body": "I'm a creative all-rounder based in Sweden with a passion for creating content with feeling. With a background in photography, video, social media and marketing strategy, I help brands and individuals stand out – in the right way.",
+    "body2": "I work with everything from UGC and photography to graphic design and SEO. Whether you're a small business looking to grow locally or an international brand seeking authentic content, we'll find an approach that works for you.",
+    "cta": "Get in touch"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Ready to start a project? Get in touch!",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "company": "Company (optional)",
+      "service": "What are you interested in?",
+      "message": "Tell me more about your project",
+      "send": "Send",
+      "success": "Thank you! I'll get back to you within 1–2 business days.",
+      "services": [
+        "Photography",
+        "Video Production",
+        "UGC Content",
+        "Social Media Management",
+        "Graphic Design / Web Design",
+        "SEO & LLM Optimization",
+        "Other"
+      ]
+    },
+    "book": {
+      "title": "Book a meeting",
+      "subtitle": "Choose a time that works for you in my calendar."
+    }
+  },
+  "footer": {
+    "tagline": "Creating content that tells your story.",
+    "links": "Quick links",
+    "social": "Social media",
+    "rights": "All rights reserved."
+  }
+}
