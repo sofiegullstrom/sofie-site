@@ -231,22 +231,6 @@ export default function WorkWithMeClient({ locale }: WorkWithMeClientProps) {
 
   return (
     <div className="min-h-screen flex flex-col" style={PAGE_BG_STYLE}>
-      {/* ── Fixed SG logo — always visible in top-left ── */}
-      <div className="fixed top-5 left-6 z-[60]">
-        <Link
-          href={`/${locale}`}
-          aria-label="Sofie Gullström — home"
-          className="hover:opacity-70 transition-opacity duration-200"
-        >
-          <span
-            className="font-serif text-2xl font-light tracking-[0.12em] select-none"
-            style={{ color: "#FAF7F2" }}
-          >
-            SG
-          </span>
-        </Link>
-      </div>
-
       {/* ── Navbar (language toggle + mobile menu) ── */}
       <Navigation locale={locale} />
 
