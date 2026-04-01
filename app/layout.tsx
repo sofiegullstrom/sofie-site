@@ -18,6 +18,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sofiegullstrom.com"),
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   title: {
     default: "Sofie Gullström – UGC Creator & Digital Konsult",
     template: "%s | Sofie Gullström",
