@@ -1267,7 +1267,7 @@ export default function CategoryPageClient({
             </div>
 
             {/* Right: cover-flow carousel */}
-            <div className="hidden md:block">
+            <div>
               <ImageCarousel items={data.galleryItems ?? buildGalleryItems(data.images, data.videos)} />
             </div>
 
