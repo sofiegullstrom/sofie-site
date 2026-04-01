@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 
 interface ContactSubmission {
   name: string;
@@ -12,8 +10,6 @@ interface ContactSubmission {
   submittedAt: string;
 }
 
-// Store submissions in a local JSON file (backup / admin reference)
-const SUBMISSIONS_FILE = path.join(process.cwd(), "public", "contact-submissions.json");
 
 async function sendEmailNotification(submission: ContactSubmission) {
   const resendApiKey = process.env.RESEND_API_KEY;
@@ -106,21 +102,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    // Read existing submissions
-    let submissions: ContactSubmission[] = [];
-    if (fs.existsSync(SUBMISSIONS_FILE)) {
-      try {
-        submissions = JSON.parse(fs.readFileSync(SUBMISSIONS_FILE, "utf-8"));
-      } catch {
-        submissions = [];
-      }
-    }
-
-    // Append and save
-    submissions.push(submission);
-    fs.writeFileSync(SUBMISSIONS_FILE, JSON.stringify(submissions, null, 2), "utf-8");
-
-    // Send email notification (non-blocking)
+    // Send email notification
     await sendEmailNotification(submission);
 
     return NextResponse.json({ ok: true });
@@ -129,14 +111,3 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function GET() {
-  try {
-    if (!fs.existsSync(SUBMISSIONS_FILE)) {
-      return NextResponse.json([]);
-    }
-    const data = fs.readFileSync(SUBMISSIONS_FILE, "utf-8");
-    return NextResponse.json(JSON.parse(data));
-  } catch {
-    return NextResponse.json([]);
-  }
-}
