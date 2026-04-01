@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import ClientLogos from "@/components/ClientLogos";
 import PortfolioSection from "@/components/PortfolioSection";
 import AboutSection from "@/components/AboutSection";
+import FollowSection from "@/components/FollowSection";
 import type { Metadata } from "next";
 
 interface HomePageProps {
@@ -44,6 +45,9 @@ export default async function HomePage({ params }: HomePageProps) {
 
         {/* 4. Portfolio – categorized grid */}
         <PortfolioSection locale={locale} />
+
+        {/* 5. Follow on socials */}
+        <FollowSection locale={locale} />
       </main>
       <Footer locale={locale} />
     </>
