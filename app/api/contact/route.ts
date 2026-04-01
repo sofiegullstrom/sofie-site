@@ -61,25 +61,25 @@ async function sendEmailNotification(submission: ContactSubmission) {
     </div>
   `;
 
-  try {
-    const fromEmail = process.env.RESEND_FROM_EMAIL || "portfolio@sofiegullstrom.com";
-    await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${resendApiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: `Sofie Portfolio <${fromEmail}>`,
-        to: ["sofie@scalegroups.com"],
-        reply_to: submission.email,
-        subject: `Ny förfrågan: ${submission.name}${submission.company ? ` (${submission.company})` : ""} – ${submission.type || "Kontakt"}`,
-        html,
-      }),
-    });
-  } catch (err) {
-    // Log but don't fail the request — submission is already saved
-    console.error("Email notification failed:", err);
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "portfolio@sofiegullstrom.com";
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${resendApiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: `Sofie Portfolio <${fromEmail}>`,
+      to: ["sofie@scalegroups.com"],
+      reply_to: submission.email,
+      subject: `Ny förfrågan: ${submission.name}${submission.company ? ` (${submission.company})` : ""} – ${submission.type || "Kontakt"}`,
+      html,
+    }),
+  });
+  if (!res.ok) {
+    const body = await res.text();
+    console.error(`Resend error ${res.status}:`, body);
+    throw new Error(`Resend ${res.status}: ${body}`);
   }
 }
 
