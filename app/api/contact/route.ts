@@ -13,7 +13,11 @@ interface ContactSubmission {
 
 async function sendEmailNotification(submission: ContactSubmission) {
   const resendApiKey = process.env.RESEND_API_KEY;
-  if (!resendApiKey) return; // Skip if not configured
+  console.log("[contact] RESEND_API_KEY present:", !!resendApiKey);
+  if (!resendApiKey) {
+    console.error("[contact] RESEND_API_KEY is missing — email not sent");
+    return;
+  }
 
   const html = `
     <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; color: #2C1A0E;">
@@ -76,10 +80,10 @@ async function sendEmailNotification(submission: ContactSubmission) {
       html,
     }),
   });
+  const resBody = await res.text();
+  console.log(`[contact] Resend response ${res.status}:`, resBody);
   if (!res.ok) {
-    const body = await res.text();
-    console.error(`Resend error ${res.status}:`, body);
-    throw new Error(`Resend ${res.status}: ${body}`);
+    throw new Error(`Resend ${res.status}: ${resBody}`);
   }
 }
 
