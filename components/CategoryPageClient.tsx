@@ -102,6 +102,12 @@ const CATS: Record<string, CatData> = {
       { src: "/images/portfolio/p16.jpg", brand: "HelloFresh" },
       { src: "/images/portfolio/p25.jpg", brand: "Hickap"     },
     ],
+    galleryItems: [
+      { kind: "image", src: "/images/portfolio/p3.jpg",  brand: "Arla",       ratio: "4/5" },
+      { kind: "image", src: "/images/portfolio/p15.jpg", brand: "HelloFresh", ratio: "1/1" },
+      { kind: "image", src: "/images/portfolio/p16.jpg", brand: "HelloFresh", ratio: "4/5" },
+      { kind: "image", src: "/images/portfolio/p25.jpg", brand: "Hickap",     ratio: "3/4" },
+    ],
   },
   mode: {
     sv: "Mode & Stil",
@@ -217,13 +223,29 @@ const CATS: Record<string, CatData> = {
     videos: [
       { src: "/images/elektronik/ev1.mp4", label: "1080 × 1920" },
       { src: "/images/elektronik/ev2.mp4", label: "1080 × 1920" },
-      { src: "/images/elektronik/ev3.mp4", label: "1080 × 1920" },
       { src: "/images/elektronik/ev4.mp4", label: "1080 × 1920" },
       { src: "/images/elektronik/ev5.mp4", label: "1080 × 1920" },
       { src: "/images/elektronik/ev6.mp4", label: "1080 × 1920" },
       { src: "/images/elektronik/ev7.mp4", label: "1080 × 1920" },
       { src: "/images/elektronik/ev8.mp4", label: "1080 × 1920" },
       { src: "/images/elektronik/ev9.mp4", label: "1080 × 1920" },
+    ],
+    galleryItems: [
+      { kind: "video", src: "/images/elektronik/ev9.mp4",                                        label: "1080 × 1920" },
+      { kind: "image", src: "/images/elektronik/IMG_2815.jpg",                                   brand: "Elektronik", ratio: "4/5" },
+      { kind: "image", src: "/images/elektronik/IMG_0853.jpg",                                   brand: "Elektronik", ratio: "1/1" },
+      { kind: "video", src: "/images/elektronik/ev1.mp4",                                        label: "1080 × 1920" },
+      { kind: "image", src: "/images/elektronik/IMG_1603.jpg",                                   brand: "Elektronik", ratio: "4/5" },
+      { kind: "image", src: "/images/elektronik/IMG_2393.jpg",                                   brand: "Elektronik", ratio: "3/4" },
+      { kind: "video", src: "/images/elektronik/ev2.mp4",                                        label: "1080 × 1920" },
+      { kind: "image", src: "/images/elektronik/IMG_2811.JPG",                                   brand: "Elektronik", ratio: "4/5" },
+      { kind: "image", src: "/images/elektronik/0B645D3D-2462-4861-983B-E7349F588CA4.JPG",       brand: "Elektronik", ratio: "1/1" },
+      { kind: "video", src: "/images/elektronik/ev4.mp4",                                        label: "1080 × 1920" },
+      { kind: "image", src: "/images/elektronik/D8C4195E-9F18-4B77-80CC-A2F5553BA69A.JPG",       brand: "Elektronik", ratio: "4/5" },
+      { kind: "video", src: "/images/elektronik/ev5.mp4",                                        label: "1080 × 1920" },
+      { kind: "video", src: "/images/elektronik/ev6.mp4",                                        label: "1080 × 1920" },
+      { kind: "video", src: "/images/elektronik/ev7.mp4",                                        label: "1080 × 1920" },
+      { kind: "video", src: "/images/elektronik/ev8.mp4",                                        label: "1080 × 1920" },
     ],
   },
   halsa: {
@@ -477,6 +499,8 @@ function CarouselCard({ item }: { item: GalleryItem }) {
   );
 }
 
+const MAX_VISIBLE_DOTS = 4;
+
 function ImageCarousel({ items }: { items: GalleryItem[] }) {
   const [activeIdx, setActiveIdx] = useState(0);
   const total = items.length;
@@ -567,31 +591,40 @@ function ImageCarousel({ items }: { items: GalleryItem[] }) {
           </svg>
         </button>
 
-        {/* Dot indicators — each has a 44px tap zone via padding */}
-        <div role="tablist" aria-label="Slides" className="flex items-center gap-1">
-          {items.map((_, i) => (
-            <button
-              key={i}
-              role="tab"
-              aria-selected={i === activeIdx}
-              aria-label={`Slide ${i + 1} of ${total}`}
-              onClick={() => setActiveIdx(i)}
-              className="flex items-center justify-center w-[22px] h-[44px] focus-visible:outline-2 focus-visible:outline-sand focus-visible:outline-offset-1 rounded-sm"
-            >
-              <span
-                aria-hidden="true"
-                style={{
-                  display: "block",
-                  width: i === activeIdx ? 18 : 5,
-                  height: 5,
-                  borderRadius: 3,
-                  background: i === activeIdx ? "rgba(250,247,242,0.85)" : "rgba(250,247,242,0.22)",
-                  transition: "width 0.35s ease, background 0.3s ease",
-                }}
-              />
-            </button>
-          ))}
-        </div>
+        {/* Dot indicators — max 4 visible, sliding window around active */}
+        {(() => {
+          const numDots = Math.min(MAX_VISIBLE_DOTS, total);
+          const windowStart = total <= MAX_VISIBLE_DOTS
+            ? 0
+            : Math.max(0, Math.min(activeIdx - 1, total - MAX_VISIBLE_DOTS));
+          const visibleDots = Array.from({ length: numDots }, (_, i) => windowStart + i);
+          return (
+            <div role="tablist" aria-label="Slides" className="flex items-center gap-1">
+              {visibleDots.map((dotIdx) => (
+                <button
+                  key={dotIdx}
+                  role="tab"
+                  aria-selected={dotIdx === activeIdx}
+                  aria-label={`Slide ${dotIdx + 1} of ${total}`}
+                  onClick={() => setActiveIdx(dotIdx)}
+                  className="flex items-center justify-center w-[22px] h-[44px] focus-visible:outline-2 focus-visible:outline-sand focus-visible:outline-offset-1 rounded-sm"
+                >
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      display: "block",
+                      width: dotIdx === activeIdx ? 18 : 5,
+                      height: 5,
+                      borderRadius: 3,
+                      background: dotIdx === activeIdx ? "rgba(250,247,242,0.85)" : "rgba(250,247,242,0.22)",
+                      transition: "width 0.35s ease, background 0.3s ease",
+                    }}
+                  />
+                </button>
+              ))}
+            </div>
+          );
+        })()}
 
         {/* Next — min 44×44px */}
         <button
