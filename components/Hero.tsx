@@ -81,7 +81,7 @@ export default function Hero({ locale: _locale }: HeroProps) {
   const creamOpacity  = Math.min(Math.max((p - 0.4) / 0.4, 0), 0.96);
 
   return (
-    <section ref={sectionRef} className="relative" style={{ height: "125vh" }}>
+    <section ref={sectionRef} className="relative" style={{ height: "250vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden bg-dark flex flex-col">
 
         {/* Cream bg fades in as video shrinks */}
@@ -94,37 +94,42 @@ export default function Hero({ locale: _locale }: HeroProps) {
         <div
           className="absolute inset-0 z-30"
           style={{
-            transform:       `scale(${videoScale}) rotate(${videoRot}deg)`,
-            transformOrigin: "center center",
-            opacity:         videoOpacity,
-            willChange:      "transform, opacity",
-            pointerEvents:   "none",
+            opacity:       videoOpacity,
+            willChange:    "opacity",
+            pointerEvents: "none",
           }}
         >
-          <video
-            ref={videoRef}
-            src="/images/herovideo.mp4"
-            className="w-full h-full object-cover"
-            preload="auto"
-            autoPlay
-            muted
-            playsInline
-            disablePictureInPicture
-            onLoadedData={(e) => {
-              // Pause immediately so video is still on load — scroll drives it
-              const v = e.currentTarget;
-              v.pause();
-              v.currentTime = 0;
+          {/* Centered video container */}
+          <div
+            style={{
+              position:        "absolute",
+              top:             "50%",
+              left:            "50%",
+              width:           "50%",
+              aspectRatio:     "9/16",
+              transform:       `translate(-50%, -50%) scale(${videoScale}) rotate(${videoRot}deg)`,
+              transformOrigin: "center center",
+              willChange:      "transform",
+              overflow:        "hidden",
+              borderRadius:    "8px",
             }}
-          />
-          <div
-            className="absolute inset-0 bg-gradient-to-r from-dark/60 via-dark/20 to-transparent"
-            style={{ opacity: Math.max(0, 1 - p * 4) }}
-          />
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-dark/20"
-            style={{ opacity: Math.max(0, 1 - p * 4) }}
-          />
+          >
+            <video
+              ref={videoRef}
+              src="/images/herovideo.mp4"
+              className="w-full h-full object-cover"
+              preload="auto"
+              autoPlay
+              muted
+              playsInline
+              disablePictureInPicture
+              onLoadedData={(e) => {
+                const v = e.currentTarget;
+                v.pause();
+                v.currentTime = 0;
+              }}
+            />
+          </div>
         </div>
 
         {/* Reveal text */}
