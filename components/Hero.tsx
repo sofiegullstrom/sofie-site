@@ -106,8 +106,10 @@ export default function Hero({ locale: _locale }: HeroProps) {
             src="/images/herovideo.mp4"
             className="w-full h-full object-cover"
             preload="auto"
+            autoPlay
             muted
             playsInline
+            loop
             disablePictureInPicture
           />
           <div
