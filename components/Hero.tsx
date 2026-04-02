@@ -99,14 +99,14 @@ export default function Hero({ locale: _locale }: HeroProps) {
             pointerEvents: "none",
           }}
         >
-          {/* Centered video container — 75vh tall, width explicit from 9:16 ratio */}
+          {/* Centered video container — full viewport height, width from 9:16 ratio */}
           <div
             style={{
               position:        "absolute",
               top:             "50%",
               left:            "50%",
-              height:          "75vh",
-              width:           "calc(75vh * 9 / 16)",
+              height:          "100vh",
+              width:           "calc(100vh * 9 / 16)",
               transform:       `translate(-50%, -50%) scale(${videoScale}) rotate(${videoRot}deg)`,
               transformOrigin: "center center",
               willChange:      "transform",
