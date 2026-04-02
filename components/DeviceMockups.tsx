@@ -32,7 +32,7 @@ export default function DeviceMockups({ locale }: DeviceMockupsProps) {
           Ordered visually by prominence: TV dominates as the center hero device.
           Real-world scale: TV > Desktop > Phone
         */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 items-end">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-6 items-end">
 
           {/* ── LEFT: iPhone — smallest ── */}
           <div className="flex flex-col items-center gap-5">

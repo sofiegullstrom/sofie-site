@@ -167,8 +167,8 @@ function CategoryCard({ cat, locale, index }: { cat: Category; locale: string; i
                   }}
                 >
                   <span
-                    className="font-serif font-light uppercase"
-                    style={{ color: "rgba(250,247,242,0.92)", fontSize: "clamp(10px, 1vw, 13px)", letterSpacing: "0.22em" }}
+                    className="font-serif font-light uppercase text-[11px] md:text-[clamp(10px,1vw,13px)]"
+                    style={{ color: "rgba(250,247,242,0.92)", letterSpacing: "0.18em" }}
                   >
                     {locale === "sv" ? "Jobba med mig" : "Let's work together"}
                   </span>
@@ -191,10 +191,10 @@ function CategoryCard({ cat, locale, index }: { cat: Category; locale: string; i
               />
 
               {/* Category name — always visible at bottom */}
-              <div className="absolute bottom-0 left-0 right-0 px-4 pb-4">
+              <div className="absolute bottom-0 left-0 right-0 px-3 pb-3">
                 <p
-                  className="font-serif font-light text-cream leading-tight"
-                  style={{ fontSize: "clamp(13px, 1.6vw, 18px)", letterSpacing: "0.03em" }}
+                  className="font-serif font-light text-cream leading-tight text-[13px] sm:text-[15px] md:text-[clamp(13px,1.6vw,18px)]"
+                  style={{ letterSpacing: "0.03em" }}
                 >
                   {label}
                 </p>

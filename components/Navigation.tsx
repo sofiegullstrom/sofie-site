@@ -62,10 +62,10 @@ export default function Navigation({ locale }: NavigationProps) {
             </span>
           </Link>
 
-          {/* Rising button — clips overflow so it slides up from below */}
+          {/* Rising button — clips overflow so it slides up from below — hidden on mobile */}
           <div
-            className="overflow-hidden"
-            style={{ height: "34px", display: "flex", alignItems: "center" }}
+            className="hidden sm:flex overflow-hidden"
+            style={{ height: "34px", alignItems: "center" }}
           >
             <Link
               href={`/${locale}/work-with-me`}

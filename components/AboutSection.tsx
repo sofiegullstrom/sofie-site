@@ -186,7 +186,7 @@ export default function AboutSection({ locale }: AboutSectionProps) {
 
             {/* "Hi, I'm Sofie!" greeting + curved arrow — appears after image reveals */}
             <div
-              className="absolute top-6 right-0 flex flex-col items-end gap-1"
+              className="absolute top-6 right-2 sm:right-0 flex flex-col items-end gap-1"
               style={{
                 opacity: imgVisible ? 1 : 0,
                 transform: imgVisible ? "translateY(0)" : "translateY(12px)",
@@ -196,7 +196,7 @@ export default function AboutSection({ locale }: AboutSectionProps) {
               <p
                 className="font-serif italic font-light"
                 style={{
-                  fontSize: "clamp(1.1rem, 2vw, 1.5rem)",
+                  fontSize: "clamp(1.1rem, 3.5vw, 1.5rem)",
                   color: "var(--color-dark)",
                   letterSpacing: "0.02em",
                 }}
