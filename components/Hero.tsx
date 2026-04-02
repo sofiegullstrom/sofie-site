@@ -81,7 +81,7 @@ export default function Hero({ locale: _locale }: HeroProps) {
   const creamOpacity  = Math.min(Math.max((p - 0.4) / 0.4, 0), 0.96);
 
   return (
-    <section ref={sectionRef} className="relative" style={{ height: "250vh" }}>
+    <section ref={sectionRef} className="relative" style={{ height: "125vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden bg-dark flex flex-col">
 
         {/* Cream bg fades in as video shrinks */}
@@ -109,8 +109,13 @@ export default function Hero({ locale: _locale }: HeroProps) {
             autoPlay
             muted
             playsInline
-            loop
             disablePictureInPicture
+            onLoadedData={(e) => {
+              // Pause immediately so video is still on load — scroll drives it
+              const v = e.currentTarget;
+              v.pause();
+              v.currentTime = 0;
+            }}
           />
           <div
             className="absolute inset-0 bg-gradient-to-r from-dark/60 via-dark/20 to-transparent"
