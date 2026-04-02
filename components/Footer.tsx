@@ -19,7 +19,7 @@ export default function Footer({ locale }: FooterProps) {
         <div className="py-16 md:py-20 grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <p className="font-serif text-2xl tracking-widest mb-4">
+            <p className="font-serif text-xl md:text-2xl tracking-wide md:tracking-widest mb-4">
               <span className="font-light">SOFIE</span>
               <span className="font-medium"> GULLSTRÖM</span>
             </p>

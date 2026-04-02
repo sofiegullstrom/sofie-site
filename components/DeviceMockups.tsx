@@ -19,7 +19,7 @@ export default function DeviceMockups({ locale }: DeviceMockupsProps) {
 
   return (
     // Rendered inside AboutSection — no section/padding/background needed
-    <div className="pt-16 md:pt-24 overflow-hidden">
+    <div className="pt-16 md:pt-24 overflow-x-hidden">
       <div>
 
         {/* Eyebrow — kept as section label, no heading or paragraph */}
@@ -97,11 +97,11 @@ export default function DeviceMockups({ locale }: DeviceMockupsProps) {
                 <div className="w-24 h-1 bg-dark/40 rounded-full" />
               </div>
             </div>
-            <div className="text-center">
+            <div className="text-center px-2">
               <p className="text-xs tracking-ultra-wide uppercase text-mocha font-sans mb-1">
                 {sv ? "TV & reklamfilm" : "TV & commercials"}
               </p>
-              <p className="font-serif text-2xl text-dark">
+              <p className="font-serif text-xl md:text-2xl text-dark leading-tight">
                 {sv ? "Reklamfilm & produktion" : "TV commercials & production"}
               </p>
             </div>
