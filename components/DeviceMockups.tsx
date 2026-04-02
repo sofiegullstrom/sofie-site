@@ -60,7 +60,6 @@ export default function DeviceMockups({ locale }: DeviceMockupsProps) {
                 <div className="absolute right-0 top-16 w-0.5 h-6 bg-dark/50 rounded-r-full -mr-px" />
                 <div className="absolute left-0 top-12 w-0.5 h-5 bg-dark/50 rounded-l-full -ml-px" />
                 <div className="absolute left-0 top-20 w-0.5 h-8 bg-dark/50 rounded-l-full -ml-px" />
-                <div className="absolute left-0 top-30 w-0.5 h-8 bg-dark/50 rounded-l-full -ml-px" />
               </div>
             </div>
             <div className="text-center">
