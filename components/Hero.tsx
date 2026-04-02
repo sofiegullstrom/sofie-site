@@ -99,19 +99,18 @@ export default function Hero({ locale: _locale }: HeroProps) {
             pointerEvents: "none",
           }}
         >
-          {/* Centered video container — full viewport height, width from 9:16 ratio */}
+          {/* Video cover — fills entire screen, cropped with object-cover */}
           <div
             style={{
               position:        "absolute",
               top:             "50%",
               left:            "50%",
-              height:          "100vh",
-              width:           "calc(100vh * 9 / 16)",
+              width:           "100%",
+              height:          "100%",
               transform:       `translate(-50%, -50%) scale(${videoScale}) rotate(${videoRot}deg)`,
               transformOrigin: "center center",
               willChange:      "transform",
               overflow:        "hidden",
-              borderRadius:    "8px",
             }}
           >
             <video
